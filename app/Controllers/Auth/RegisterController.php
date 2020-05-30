@@ -20,6 +20,9 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    /**
+     * @param string[] $data
+     */
     protected function validator(array $data): \Illuminate\Contracts\Validation\Validator
     {
         return Validator::make($data, [
@@ -29,6 +32,9 @@ class RegisterController extends Controller
         ]);
     }
 
+    /**
+     * @param string[] $data
+     */
     protected function create(array $data): User
     {
         return User::create([

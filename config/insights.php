@@ -12,7 +12,9 @@ use PHP_CodeSniffer\Standards\Generic\Sniffs\Formatting\SpaceAfterNotSniff;
 use SlevomatCodingStandard\Sniffs\Commenting\UselessFunctionDocCommentSniff;
 use SlevomatCodingStandard\Sniffs\Namespaces\AlphabeticallySortedUsesSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\DeclareStrictTypesSniff;
+use SlevomatCodingStandard\Sniffs\TypeHints\DisallowArrayTypeHintSyntaxSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\DisallowMixedTypeHintSniff;
+use SlevomatCodingStandard\Sniffs\TypeHints\PropertyTypeHintSniff;
 
 return [
 
@@ -62,6 +64,19 @@ return [
 
     'exclude' => [
         'routes/web.php',
+        'app/Exceptions/Handler.php',
+        'app/Middleware/CheckForMaintenanceMode.php',
+        'app/Middleware/EncryptCookies.php',
+        'app/Middleware/TrimStrings.php',
+        'app/Http/Kernel.php',
+        'app/Middleware/TrustProxies.php',
+        'app/Middleware/VerifyCsrfToken.php',
+        'app/Providers/AuthServiceProvider.php',
+        'app/Providers/EventServiceProvider.php',
+        'app/Middleware/TrustHosts.php',
+        'app/Providers/BroadcastServiceProvider.php',
+        'app/Providers/AppServiceProvider.php',
+        'app/Console/Kernel.php',
     ],
 
     'remove' => [
@@ -73,6 +88,8 @@ return [
         ForbiddenTraits::class,
         UselessFunctionDocCommentSniff::class,
         SpaceAfterNotSniff::class,
+        UselessOverridingMethodSniff::class,
+        DisallowArrayTypeHintSyntaxSniff::class,
     ],
 
     'config' => [
@@ -83,11 +100,8 @@ return [
             'lineLimit' => 120,
             'absoluteLineLimit' => 160,
         ],
-        UselessOverridingMethodSniff::class => [
-            'exclude' => [
-                'Exceptions/Handler.php',
-                'app/Exceptions/Handler.php',
-            ],
+        PropertyTypeHintSniff::class => [
+            'enableNativeTypeHint' => false,
         ],
     ],
 
